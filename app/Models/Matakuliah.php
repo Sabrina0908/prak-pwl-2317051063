@@ -11,7 +11,7 @@ class Matakuliah extends Model
     use HasFactory;
 
     protected $table = 'mata_kuliah';
-    protected $guarted = ['id'];
+    protected $guarded = ['id'];
 
     public $incrementing = false;
     protected $keyType = 'string';
@@ -20,7 +20,7 @@ class Matakuliah extends Model
     {
         parent::boot();
 
-        static::creeating(function ($model){
+        static::creating(function ($model){
             if (empty($model->{$model->getKeyName()})) {
                 $model->{$model->getKeyName()} = (string) Str::uuid();
             }

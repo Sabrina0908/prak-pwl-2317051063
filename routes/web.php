@@ -20,9 +20,9 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::get('/user', [MataKuliahController::class, 'index']);
-Route::get('/user/create', [MataKuliahController::class, 'create'])->name('user.create');
-Route::post('/user', [MataKuliahController::class, 'store'])->name('user.store');
+Route::get('/user', [UserController::class, 'index'])->name('user.index');
+Route::get('/user/create', [UserController::class, 'create'])->name('user.create');
+Route::post('/user', [UserController::class, 'store'])->name('user.store');
 
 Route::get('/matakuliah', [MataKuliahController::class, 'index']);
 Route::get('/matakuliah/create', [MataKuliahController::class, 'create'])->name('matakuliah.create');

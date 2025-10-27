@@ -22,7 +22,7 @@
                         <tr class="hover:bg-orange-50 transition">
                             <td class="px-4 py-3 text-gray-700">{{ $user->id }}</td>
                             <td class="px-4 py-3 text-gray-700">{{ $user->nama }}</td>
-                            <td class="px-4 py-3 text-gray-700">{{ $user->nim }}</td>
+                            <td class="px-4 py-3 text-gray-700">{{ $user->npm }}</td>
                             <td class="px-4 py-3 text-gray-700">{{ $user->nama_kelas }}</td>
                         </tr>
                     @endforeach
