@@ -15,6 +15,7 @@
                         <th class="px-4 py-3">Nama</th>
                         <th class="px-4 py-3">NPM</th>
                         <th class="px-4 py-3">Kelas</th>
+                        <th class="px-4 py-3">Aksi</th>
                     </tr>
                 </thead>
                 <tbody class="divide-y divide-gray-200">
@@ -24,6 +25,24 @@
                             <td class="px-4 py-3 text-gray-700">{{ $user->nama }}</td>
                             <td class="px-4 py-3 text-gray-700">{{ $user->npm }}</td>
                             <td class="px-4 py-3 text-gray-700">{{ $user->nama_kelas }}</td>
+                            <td class="px-4 py-3">
+                                <div class="flex items-center space-x-2">
+                                    <a href="{{ route('user.edit', $user->id) }}" 
+                                        class="inline-flex items-center space-x-2 px-3 py-2 rounded-lg text-sm font-semibold text-white bg-gradient-to-r from-sky-500 to-blue-600 hover:from-sky-600 hover:to-blue-700 transform hover:-translate-y-0.5 transition">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.232 5.232l3.536 3.536M9 11l6-6 3 3-6 6H9v-3z"/></svg>
+                                        <span>Edit</span>
+                                    </a>
+
+                                    <form action="{{ route('user.destroy', $user->id) }}" method="POST" class="inline-block" onsubmit="return confirm('Hapus data ini?');">
+                                        @csrf
+                                        @method('DELETE')
+                                        <button type="submit" class="inline-flex items-center space-x-2 px-3 py-2 rounded-lg text-sm font-semibold text-white bg-gradient-to-r from-rose-500 to-red-600 hover:from-rose-600 hover:to-red-700 transform hover:translate-y-0.5 transition">
+                                            <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+                                            <span>Hapus</span>
+                                        </button>
+                                    </form>
+                                </div>
+                            </td>
                         </tr>
                     @endforeach
                 </tbody>
