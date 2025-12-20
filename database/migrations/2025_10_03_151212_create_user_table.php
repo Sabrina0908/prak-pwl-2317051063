@@ -9,7 +9,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('user', function (Blueprint $table) {
-            $table->id();
+            // Use UUID as primary key
+            $table->uuid('id')->primary();
             $table->string('nama');
             $table->string('npm')->unique();
             $table->foreignId('kelas_id')->constrained('kelas')->cascadeOnUpdate()->restrictOnDelete();

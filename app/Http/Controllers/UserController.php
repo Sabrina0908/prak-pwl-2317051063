@@ -46,4 +46,45 @@ class UserController extends Controller
         return view('list_user', $data);
 
     }
+
+    public function edit($id){
+        $user = $this->userModel->getUserById($id);
+        if (!$user) {
+            return redirect()->to('/user');
+        }
+
+        $kelas = $this->kelasModel->getKelas();
+
+        $data = [
+            'title' => 'Edit User',
+            'user' => $user,
+            'kelas' => $kelas,
+        ];
+
+        return view('edit_user', $data);
+    }
+
+    public function update(Request $request, $id){
+        $updated = $this->userModel->updateUser($id, [
+            'nama' => $request->input('nama'),
+            'npm' => $request->input('npm'),
+            'kelas_id' => $request->input('kelas_id'),
+        ]);
+
+        if ($updated) {
+            return redirect()->to('/user')->with('success', 'Data user berhasil diperbarui.');
+        }
+
+        return redirect()->to('/user')->with('error', 'Gagal memperbarui data user.');
+    }
+
+    public function destroy($id){
+        $deleted = $this->userModel->deleteUser($id);
+
+        if ($deleted) {
+            return redirect()->to('/user')->with('success', 'Data user berhasil dihapus.');
+        }
+
+        return redirect()->to('/user')->with('error', 'Gagal menghapus data user.');
+    }
 }
